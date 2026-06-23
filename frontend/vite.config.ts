@@ -55,7 +55,7 @@ export default defineConfig(({ mode, command }) => {
   return {
     plugins: [
       build({
-        entry: './src/server.ts',
+        entry: './api-entry.ts',
         external: serverExternals,
         vercel: {
           name: 'api',
