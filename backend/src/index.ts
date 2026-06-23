@@ -1,10 +1,21 @@
 import { Hono } from 'hono';
 import { dbMiddleware } from './middleware/db';
+import { getEnv } from './lib/env';
 import authRoutes from './routes/auth';
 import notesRoutes from './routes/notes';
 import shareRoutes from './routes/share';
 
 const app = new Hono().basePath('/api');
+
+app.get('/health', (c) => {
+  try {
+    getEnv();
+    return c.json({ ok: true });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Invalid environment';
+    return c.json({ ok: false, error: message }, 503);
+  }
+});
 
 app.get('/', (c) =>
   c.json({
@@ -36,6 +47,13 @@ app.use('*', dbMiddleware);
 
 app.onError((err, c) => {
   console.error(err);
+
+  const message = err instanceof Error ? err.message : 'Internal server error';
+
+  if (message.includes('environment variables') || message.includes('Invalid environment')) {
+    return c.json({ error: 'Server configuration error', details: message }, 503);
+  }
+
   return c.json({ error: 'Internal server error' }, 500);
 });
 

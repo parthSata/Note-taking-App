@@ -1,4 +1,5 @@
+import './polyfill';
 import { Hono } from 'hono';
-import apiApp from '@note-taking/backend';
+import apiApp from '../../backend/src/index';
 
 export default apiApp as Hono;

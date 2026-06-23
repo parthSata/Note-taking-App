@@ -5,6 +5,14 @@ import build from '@hono/vite-build/vercel';
 
 const backendUrl = process.env.BACKEND_URL ?? 'http://localhost:3001';
 
+const serverExternals = [
+  'mongoose',
+  'mongodb',
+  'bson',
+  'bcryptjs',
+  'jsonwebtoken',
+];
+
 export default defineConfig(({ mode, command }) => {
   if (mode === 'client') {
     return {
@@ -48,6 +56,7 @@ export default defineConfig(({ mode, command }) => {
     plugins: [
       build({
         entry: './src/server.ts',
+        external: serverExternals,
         vercel: {
           name: 'api',
           routes: [{ src: '^/api(?:/.*)?$' }],
@@ -60,6 +69,7 @@ export default defineConfig(({ mode, command }) => {
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
+        '@note-taking/backend': path.resolve(__dirname, '../backend/src/index.ts'),
       },
     },
   };
