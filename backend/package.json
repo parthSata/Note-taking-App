@@ -1,0 +1,38 @@
+{
+  "name": "@note-taking/backend",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "dev": "nodemon",
+    "start": "tsx src/server.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./lib/auth": "./src/lib/auth.ts",
+    "./types": "./src/types/index.ts",
+    "./validations/auth.schema": "./src/validations/auth.schema.ts",
+    "./validations/note.schema": "./src/validations/note.schema.ts",
+    "./validations/share.schema": "./src/validations/share.schema.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.9",
+    "@hono/zod-validator": "^0.8.0",
+    "dotenv": "^16.6.1",
+    "bcryptjs": "^3.0.3",
+    "hono": "^4.12.26",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.7.1",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^20",
+    "nodemon": "^3.1.11",
+    "tsx": "^4.20.6",
+    "typescript": "^5"
+  }
+}
