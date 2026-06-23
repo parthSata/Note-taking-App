@@ -20,8 +20,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@note-taking/backend": ["../Backend/src/index.ts"],
-      "@note-taking/backend/*": ["../Backend/src/*"]
+      "@note-taking/backend": ["../backend/src/index.ts"],
+      "@note-taking/backend/*": ["../backend/src/*"]
     }
   },
   "include": [

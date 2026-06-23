@@ -88,12 +88,12 @@ async function proxyRequest(request: NextRequest): Promise<NextResponse> {
 
 type RouteContext = { params: Promise<{ route?: string[] }> };
 
-async function routeHandler(request: NextRequest, context: RouteContext) {
+async function routeHandler(request: NextRequest, _context: RouteContext) {
   if (REMOTE_BACKEND) {
     return proxyRequest(request);
   }
 
-  return handle(honoApp)(request, context);
+  return handle(honoApp)(request);
 }
 
 export const GET = routeHandler;
