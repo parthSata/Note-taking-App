@@ -1,7 +1,5 @@
-'use client';
-
 import { useCallback, useEffect, useState } from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { CopyButton } from '@/components/features/CopyButton';
@@ -186,7 +184,7 @@ export function NoteDetailClient({ noteId }: NoteDetailClientProps) {
         </CardContent>
       </Card>
 
-      <Link href="/notes" className="inline-flex text-sm font-medium text-indigo-600 hover:underline">
+      <Link to="/notes" className="inline-flex text-sm font-medium text-indigo-600 hover:underline">
         ← Back to my notes
       </Link>
     </div>

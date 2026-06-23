@@ -1,6 +1,4 @@
-'use client';
-
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { CopyButton } from '@/components/features/CopyButton';
 import { StatusBadge } from '@/components/features/StatusBadge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -67,7 +65,7 @@ export function ShareLinkCard({ shareLink, noteId }: ShareLinkCardProps) {
         </div>
 
         <Link
-          href={`/notes/${noteId}`}
+          to={`/notes/${noteId}`}
           className="inline-flex text-sm font-medium text-indigo-600 hover:underline"
         >
           View note details →

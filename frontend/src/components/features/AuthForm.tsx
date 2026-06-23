@@ -1,6 +1,4 @@
-'use client';
-
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -47,7 +45,7 @@ export function AuthForm({ mode }: AuthFormProps) {
         body: JSON.stringify(data),
       });
       toast.success(isRegister ? 'Account created!' : 'Welcome back!');
-      // Full navigation ensures middleware receives the new auth cookie
+      // Full navigation ensures auth cookie is applied before protected routes load
       window.location.assign('/notes');
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Something went wrong';
@@ -145,7 +143,7 @@ export function AuthForm({ mode }: AuthFormProps) {
         <p className="mt-6 text-center text-sm text-muted-foreground">
           {isRegister ? 'Already have an account?' : "Don't have an account?"}{' '}
           <Link
-            href={isRegister ? '/login' : '/register'}
+            to={isRegister ? '/login' : '/register'}
             className="font-medium text-indigo-600 hover:underline"
           >
             {isRegister ? 'Sign in' : 'Register'}

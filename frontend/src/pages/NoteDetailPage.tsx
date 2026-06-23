@@ -1,12 +1,13 @@
+import { useParams } from 'react-router-dom';
 import { AppNav } from '@/components/features/AppNav';
 import { NoteDetailClient } from '@/components/features/NoteDetailClient';
 
-interface NoteDetailPageProps {
-  params: Promise<{ id: string }>;
-}
+export default function NoteDetailPage() {
+  const { id } = useParams<{ id: string }>();
 
-export default async function NoteDetailPage({ params }: NoteDetailPageProps) {
-  const { id } = await params;
+  if (!id) {
+    return <p className="p-6 text-center text-muted-foreground">Invalid note ID.</p>;
+  }
 
   return (
     <main className="relative min-h-screen p-6">

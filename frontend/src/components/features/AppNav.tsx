@@ -1,7 +1,4 @@
-'use client';
-
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'sonner';
 import { FilePlus, LayoutList, LogOut } from 'lucide-react';
 import { Button, buttonVariants } from '@/components/ui/button';
@@ -9,7 +6,7 @@ import { apiClient } from '@/lib/api-client';
 import { cn } from '@/lib/utils';
 
 export function AppNav() {
-  const pathname = usePathname();
+  const { pathname } = useLocation();
 
   const handleLogout = async () => {
     try {
@@ -36,7 +33,7 @@ export function AppNav() {
         {links.map(({ href, label, icon: Icon }) => (
           <Link
             key={href}
-            href={href}
+            to={href}
             className={cn(
               buttonVariants({
                 variant: pathname === href ? 'default' : 'outline',

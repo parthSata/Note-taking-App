@@ -1,11 +1,12 @@
+import { useParams } from 'react-router-dom';
 import { SharePageClient } from '@/components/features/SharePageClient';
 
-interface SharePageProps {
-  params: Promise<{ token: string }>;
-}
+export default function SharePage() {
+  const { token } = useParams<{ token: string }>();
 
-export default async function SharePage({ params }: SharePageProps) {
-  const { token } = await params;
+  if (!token) {
+    return <p className="p-6 text-center text-muted-foreground">Invalid share link.</p>;
+  }
 
   return (
     <main className="relative flex min-h-screen items-center justify-center p-6">

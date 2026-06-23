@@ -1,7 +1,5 @@
-'use client';
-
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import { Eye, FileText } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -69,7 +67,7 @@ export function NotesListClient() {
               <p className="font-medium">No notes yet</p>
               <p className="text-sm text-muted-foreground">Create your first secure share link.</p>
             </div>
-            <Link href="/notes/new" className="text-sm font-medium text-indigo-600 hover:underline">
+            <Link to="/notes/new" className="text-sm font-medium text-indigo-600 hover:underline">
               Create a note →
             </Link>
           </CardContent>
@@ -77,7 +75,7 @@ export function NotesListClient() {
       ) : (
         <div className="space-y-4">
           {notes.map((note) => (
-            <Link key={note.id} href={`/notes/${note.id}`}>
+            <Link key={note.id} to={`/notes/${note.id}`}>
               <Card className="border-white/20 bg-white/80 shadow-md backdrop-blur transition hover:border-indigo-200 hover:shadow-lg">
                 <CardHeader className="pb-2">
                   <div className="flex items-start justify-between gap-3">
