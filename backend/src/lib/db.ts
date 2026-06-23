@@ -22,7 +22,9 @@ export async function connectDB() {
   }
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(env.MONGODB_URI);
+    cached.promise = mongoose.connect(env.MONGODB_URI, {
+      serverSelectionTimeoutMS: 10000,
+    });
   }
 
   cached.conn = await cached.promise;

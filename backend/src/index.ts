@@ -1,5 +1,6 @@
 import { Hono } from 'hono';
 import { dbMiddleware } from './middleware/db';
+import { connectDB } from './lib/db';
 import { getEnv } from './lib/env';
 import authRoutes from './routes/auth';
 import notesRoutes from './routes/notes';
@@ -7,10 +8,11 @@ import shareRoutes from './routes/share';
 
 const app = new Hono().basePath('/api');
 
-app.get('/health', (c) => {
+app.get('/health', async (c) => {
   try {
     getEnv();
-    return c.json({ ok: true });
+    await connectDB();
+    return c.json({ ok: true, db: 'connected' });
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Invalid environment';
     return c.json({ ok: false, error: message }, 503);

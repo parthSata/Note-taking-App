@@ -1,4 +1,3 @@
-import './polyfill';
 import { Hono } from 'hono';
 import apiApp from '../../backend/src/index';
 
