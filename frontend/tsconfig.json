@@ -19,5 +19,5 @@
       "@note-taking/backend/*": ["../backend/src/*"]
     }
   },
-  "include": ["src", "api"]
+  "include": ["src"]
 }

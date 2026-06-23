@@ -19,6 +19,7 @@ frontend/out/
 # production
 build/
 frontend/dist/
+frontend/.vercel/
 
 # misc
 .DS_Store
